@@ -1,0 +1,7 @@
+class Score{
+	field int score;
+	constructor Score new(){
+	let score = 0;
+	return this;
+	}
+}

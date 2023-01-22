@@ -1,0 +1,354 @@
+function SquarePiece.new 0
+push constant 8
+call Memory.alloc 1
+pop pointer 0
+push argument 0
+pop this 0
+push argument 1
+pop this 1
+push argument 2
+pop this 6
+push this 0
+push this 6
+add
+pop this 2
+push this 1
+push this 6
+add
+pop this 3
+push this 2
+push this 6
+add
+pop this 4
+push this 3
+push this 6
+add
+pop this 5
+push pointer 0
+return
+function SquarePiece.drawSquarePiece 0
+push argument 0
+pop pointer 0
+push constant 1
+call Screen.setColor 1
+pop temp 0
+push this 0
+push this 1
+push this 2
+push this 3
+call Screen.drawRectangle 4
+pop temp 0
+push this 2
+push constant 2
+add
+push this 1
+push this 4
+push constant 2
+add
+push this 3
+call Screen.drawRectangle 4
+pop temp 0
+push this 0
+push this 3
+push constant 2
+add
+push this 2
+push this 5
+push constant 2
+add
+call Screen.drawRectangle 4
+pop temp 0
+push this 2
+push constant 2
+add
+push this 3
+push constant 2
+add
+push this 4
+push constant 2
+add
+push this 5
+push constant 2
+add
+call Screen.drawRectangle 4
+pop temp 0
+push constant 0
+return
+function SquarePiece.eraseSquarePiece 0
+push argument 0
+pop pointer 0
+push constant 0
+call Screen.setColor 1
+pop temp 0
+push this 0
+push this 1
+push this 2
+push this 3
+call Screen.drawRectangle 4
+pop temp 0
+push this 2
+push constant 2
+add
+push this 1
+push this 4
+push constant 2
+add
+push this 3
+call Screen.drawRectangle 4
+pop temp 0
+push this 0
+push this 3
+push constant 2
+add
+push this 2
+push this 5
+push constant 2
+add
+call Screen.drawRectangle 4
+pop temp 0
+push this 2
+push constant 2
+add
+push this 3
+push constant 2
+add
+push this 4
+push constant 2
+add
+push this 5
+push constant 2
+add
+call Screen.drawRectangle 4
+pop temp 0
+push constant 0
+return
+function SquarePiece.incy 0
+push argument 0
+pop pointer 0
+push this 1
+push constant 1
+add
+pop this 1
+push this 1
+push this 6
+add
+pop this 3
+push this 3
+push this 6
+add
+pop this 5
+push constant 0
+return
+function SquarePiece.moveRight 0
+push argument 0
+pop pointer 0
+push this 0
+push constant 303
+lt
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push this 0
+push constant 16
+add
+pop this 0
+push this 0
+push this 6
+add
+pop this 2
+push this 2
+push this 6
+add
+pop this 4
+push constant 100
+call Sys.wait 1
+pop temp 0
+label IF_FALSE0
+push constant 0
+return
+function SquarePiece.moveLeft 0
+push argument 0
+pop pointer 0
+push this 0
+push constant 191
+gt
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push this 0
+push constant 16
+sub
+pop this 0
+push this 0
+push this 6
+add
+pop this 2
+push this 2
+push this 6
+add
+pop this 4
+push constant 100
+call Sys.wait 1
+pop temp 0
+label IF_FALSE0
+push constant 0
+return
+function SquarePiece.canMoveDown 0
+push argument 0
+pop pointer 0
+push constant 16384
+push this 1
+push constant 32
+add
+push constant 32
+call Math.multiply 2
+add
+push this 0
+push constant 16
+call Math.divide 2
+add
+call Memory.peek 1
+push constant 0
+eq
+push constant 16384
+push this 1
+push constant 32
+add
+push constant 32
+call Math.multiply 2
+add
+push this 4
+push constant 16
+call Math.divide 2
+add
+call Memory.peek 1
+push constant 0
+eq
+and
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push constant 0
+not
+return
+goto IF_END0
+label IF_FALSE0
+push constant 0
+return
+label IF_END0
+function SquarePiece.canMoveLeft 0
+push argument 0
+pop pointer 0
+push constant 16384
+push this 1
+push constant 32
+call Math.multiply 2
+add
+push this 0
+push constant 16
+call Math.divide 2
+add
+push constant 1
+sub
+call Memory.peek 1
+push constant 0
+eq
+push constant 16384
+push this 3
+push constant 32
+call Math.multiply 2
+add
+push this 0
+push constant 16
+call Math.divide 2
+add
+push constant 1
+sub
+call Memory.peek 1
+push constant 0
+eq
+and
+push constant 16384
+push this 5
+push constant 32
+call Math.multiply 2
+add
+push this 0
+push constant 16
+call Math.divide 2
+add
+push constant 1
+sub
+call Memory.peek 1
+push constant 0
+eq
+and
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push constant 0
+not
+return
+goto IF_END0
+label IF_FALSE0
+push constant 0
+return
+label IF_END0
+function SquarePiece.canMoveRight 0
+push argument 0
+pop pointer 0
+push constant 16384
+push this 1
+push constant 32
+call Math.multiply 2
+add
+push this 4
+push constant 16
+call Math.divide 2
+add
+push constant 1
+add
+call Memory.peek 1
+push constant 0
+eq
+push constant 16384
+push this 3
+push constant 32
+call Math.multiply 2
+add
+push this 4
+push constant 16
+call Math.divide 2
+add
+push constant 1
+add
+call Memory.peek 1
+push constant 0
+eq
+and
+push constant 16384
+push this 5
+push constant 32
+call Math.multiply 2
+add
+push this 4
+push constant 16
+call Math.divide 2
+add
+push constant 1
+add
+call Memory.peek 1
+push constant 0
+eq
+and
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push constant 0
+not
+return
+goto IF_END0
+label IF_FALSE0
+push constant 0
+return
+label IF_END0

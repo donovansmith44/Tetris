@@ -1,0 +1,89 @@
+class SquarePiece{
+	field int x1, y1, x2, y2, x3, y3, size;
+	field SquarePiece square;
+
+	constructor SquarePiece new(int Ax, int Ay, int Asize){
+	let x1 = Ax;
+	let y1 = Ay;
+	let size = Asize;
+	let x2 = x1 + size;
+	let y2 = y1 + size;
+	let x3 = x2 + size;
+	let y3 = y2 + size;
+	return this;
+	}
+	
+	method void drawSquarePiece(){
+	do Screen.setColor(1);
+	do Screen.drawRectangle(x1, y1, x2, y2); //upper left quadrant
+	do Screen.drawRectangle(x2+2, y1, x3+2, y2); //upper right quadrant
+	do Screen.drawRectangle(x1, y2+2, x2, y3+2); //lower left quadrant
+	do Screen.drawRectangle(x2+2, y2+2, x3+2, y3+2); //lower right quadrant
+	return;
+	}
+
+	method void eraseSquarePiece(){
+	do Screen.setColor(0);
+	do Screen.drawRectangle(x1, y1, x2, y2); //upper left quadrant
+	do Screen.drawRectangle(x2+2, y1, x3+2, y2); //upper right quadrant
+	do Screen.drawRectangle(x1, y2+2, x2, y3+2); //lower left quadrant
+	do Screen.drawRectangle(x2+2, y2+2, x3+2, y3+2); //lower right quadrant
+	return;
+	}
+	
+	method void incy(){
+	let y1 = y1+1;
+	let y2 = y1 + size;
+	let y3 = y2 + size;
+	return;
+	}
+	
+	method void moveRight(){
+	if(x1 < 303){
+	let x1 = x1+16;
+	let x2 = x1 + size;
+	let x3 = x2 + size;
+	do Sys.wait(100);
+	}
+	return;
+	}
+	
+	method void moveLeft(){
+	if(x1 > 191)
+	{
+	let x1 = x1-16;
+	let x2 = x1 + size;
+	let x3 = x2 + size;
+	do Sys.wait(100);
+	}
+	return;
+	}
+
+	method bool canMoveDown(){
+	   if ((Memory.peek(16384+Math.multiply(y1+32,32)+Math.divide(x1,16)) = 0) & (Memory.peek(16384+Math.multiply(y1+32,32)+Math.divide(x3,16)) = 0)){  //if the nearest block is not zero
+	   return true;
+	   }
+	   else{
+   	   return false;
+	   }
+	}
+
+	method bool canMoveLeft(){
+	if ((Memory.peek(16384+Math.multiply(y1,32)+Math.divide(x1,16)-1) = 0) & (Memory.peek(16384+Math.multiply(y2,32)+Math.divide(x1,16)-1) = 0) & (Memory.peek(16384+Math.multiply(y3,32)+Math.divide(x1,16)-1) = 0)){  //if the nearest block is not zero
+	   return true;
+	   }
+	   else{
+   	   return false;
+	   }
+	}
+
+	method bool canMoveRight(){
+	if ((Memory.peek(16384+Math.multiply(y1,32)+Math.divide(x3,16)+1) = 0) & (Memory.peek(16384+Math.multiply(y2,32)+Math.divide(x3,16)+1) = 0) & (Memory.peek(16384+Math.multiply(y3,32)+Math.divide(x3,16)+1) = 0)){  //if the nearest block is not zero
+	   return true;
+	   }
+	   else{
+   	   return false;
+	   }
+	}
+	
+}

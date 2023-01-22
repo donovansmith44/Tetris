@@ -1,0 +1,39 @@
+class Main{
+	function void main(){
+	var Row Rows;
+	var int shapeType;
+	var char kbdInput;
+	var TetrisGame newGame;
+	var LCGRandom randNum;	
+
+	let newGame = TetrisGame.new();
+	let Rows = Row.new();
+	do LCGRandom.setSeed(1);
+
+	do newGame.drawGameBoard();
+	while (~(kbdInput = 81)){
+	let kbdInput = Keyboard.keyPressed();
+	let shapeType = LCGRandom.randRange(1,5);
+	if(shapeType = 1){
+	do newGame.dropSquare();
+	}
+	if(shapeType = 2){
+	do newGame.dropStraightPiece();
+	}
+	if(shapeType = 3){
+	do newGame.dropThreePiece();
+	}
+	if(shapeType = 4){
+	do newGame.dropLPiece();
+	}
+	if(shapeType = 5){
+	do newGame.dropZPiece();
+	}
+
+	do Rows.getNumFull();
+	do Rows.clear();
+	}
+
+	return;
+	}
+}

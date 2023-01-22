@@ -1,0 +1,745 @@
+function StraightPiece.new 0
+push constant 12
+call Memory.alloc 1
+pop pointer 0
+push constant 0
+pop this 11
+push argument 0
+pop this 0
+push argument 1
+pop this 1
+push argument 2
+pop this 10
+push this 0
+push this 10
+add
+pop this 2
+push this 1
+push this 10
+add
+pop this 3
+push this 3
+push this 10
+add
+pop this 5
+push this 2
+push this 10
+add
+pop this 4
+push this 5
+push this 10
+add
+pop this 7
+push this 4
+push this 10
+add
+pop this 6
+push this 6
+push this 10
+add
+pop this 8
+push this 7
+push this 10
+add
+pop this 9
+push pointer 0
+return
+function StraightPiece.drawStraightPiece 0
+push argument 0
+pop pointer 0
+push constant 1
+call Screen.setColor 1
+pop temp 0
+push this 11
+push constant 0
+eq
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push this 0
+push this 1
+push this 2
+push this 3
+call Screen.drawRectangle 4
+pop temp 0
+push this 2
+push constant 2
+add
+push this 1
+push this 4
+push constant 2
+add
+push this 3
+call Screen.drawRectangle 4
+pop temp 0
+push this 4
+push constant 4
+add
+push this 1
+push this 6
+push constant 4
+add
+push this 3
+call Screen.drawRectangle 4
+pop temp 0
+push this 6
+push constant 6
+add
+push this 1
+push this 8
+push constant 6
+add
+push this 3
+call Screen.drawRectangle 4
+pop temp 0
+goto IF_END0
+label IF_FALSE0
+push this 0
+push this 1
+push this 2
+push this 3
+call Screen.drawRectangle 4
+pop temp 0
+push this 0
+push this 3
+push constant 2
+add
+push this 2
+push this 5
+push constant 2
+add
+call Screen.drawRectangle 4
+pop temp 0
+push this 0
+push this 5
+push constant 4
+add
+push this 2
+push this 7
+push constant 4
+add
+call Screen.drawRectangle 4
+pop temp 0
+push this 0
+push this 7
+push constant 6
+add
+push this 2
+push this 9
+push constant 6
+add
+call Screen.drawRectangle 4
+pop temp 0
+label IF_END0
+push constant 0
+return
+function StraightPiece.eraseStraightPiece 0
+push argument 0
+pop pointer 0
+push constant 0
+call Screen.setColor 1
+pop temp 0
+push this 11
+push constant 0
+eq
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push this 0
+push this 1
+push this 2
+push this 3
+call Screen.drawRectangle 4
+pop temp 0
+push this 2
+push constant 2
+add
+push this 1
+push this 4
+push constant 2
+add
+push this 3
+call Screen.drawRectangle 4
+pop temp 0
+push this 4
+push constant 4
+add
+push this 1
+push this 6
+push constant 4
+add
+push this 3
+call Screen.drawRectangle 4
+pop temp 0
+push this 6
+push constant 6
+add
+push this 1
+push this 8
+push constant 6
+add
+push this 3
+call Screen.drawRectangle 4
+pop temp 0
+goto IF_END0
+label IF_FALSE0
+push this 0
+push this 1
+push this 2
+push this 3
+call Screen.drawRectangle 4
+pop temp 0
+push this 0
+push this 3
+push constant 2
+add
+push this 2
+push this 5
+push constant 2
+add
+call Screen.drawRectangle 4
+pop temp 0
+push this 0
+push this 5
+push constant 4
+add
+push this 2
+push this 7
+push constant 4
+add
+call Screen.drawRectangle 4
+pop temp 0
+push this 0
+push this 7
+push constant 6
+add
+push this 2
+push this 9
+push constant 6
+add
+call Screen.drawRectangle 4
+pop temp 0
+label IF_END0
+push constant 0
+return
+function StraightPiece.dispose 0
+push argument 0
+pop pointer 0
+push pointer 0
+call Memory.deAlloc 1
+pop temp 0
+push constant 0
+return
+function StraightPiece.incy 0
+push argument 0
+pop pointer 0
+push this 1
+push constant 1
+add
+pop this 1
+push this 1
+push this 10
+add
+pop this 3
+push this 3
+push this 10
+add
+pop this 5
+push this 5
+push this 10
+add
+pop this 7
+push this 7
+push this 10
+add
+pop this 9
+push constant 0
+return
+function StraightPiece.moveRight 0
+push argument 0
+pop pointer 0
+push this 0
+push constant 16
+add
+pop this 0
+push this 0
+push this 10
+add
+pop this 2
+push this 2
+push this 10
+add
+pop this 4
+push this 4
+push this 10
+add
+pop this 6
+push this 6
+push this 10
+add
+pop this 8
+push constant 100
+call Sys.wait 1
+pop temp 0
+push constant 0
+return
+function StraightPiece.moveLeft 0
+push argument 0
+pop pointer 0
+push this 0
+push constant 16
+sub
+pop this 0
+push this 0
+push this 10
+add
+pop this 2
+push this 2
+push this 10
+add
+pop this 4
+push this 4
+push this 10
+add
+pop this 6
+push this 6
+push this 10
+add
+pop this 8
+push constant 100
+call Sys.wait 1
+pop temp 0
+push constant 0
+return
+function StraightPiece.canMoveDown 0
+push argument 0
+pop pointer 0
+push this 11
+push constant 0
+eq
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push constant 16384
+push this 1
+push constant 16
+add
+push constant 32
+call Math.multiply 2
+add
+push this 0
+push constant 16
+call Math.divide 2
+add
+call Memory.peek 1
+push constant 0
+eq
+push constant 16384
+push this 1
+push constant 16
+add
+push constant 32
+call Math.multiply 2
+add
+push this 2
+push constant 16
+call Math.divide 2
+add
+call Memory.peek 1
+push constant 0
+eq
+and
+push constant 16384
+push this 1
+push constant 16
+add
+push constant 32
+call Math.multiply 2
+add
+push this 4
+push constant 16
+call Math.divide 2
+add
+call Memory.peek 1
+push constant 0
+eq
+and
+push constant 16384
+push this 1
+push constant 16
+add
+push constant 32
+call Math.multiply 2
+add
+push this 6
+push constant 16
+call Math.divide 2
+add
+call Memory.peek 1
+push constant 0
+eq
+and
+push constant 16384
+push this 1
+push constant 16
+add
+push constant 32
+call Math.multiply 2
+add
+push this 8
+push constant 16
+call Math.divide 2
+add
+call Memory.peek 1
+push constant 0
+eq
+and
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push constant 0
+not
+return
+label IF_FALSE1
+label IF_FALSE0
+push this 11
+push constant 1
+eq
+if-goto IF_TRUE2
+goto IF_FALSE2
+label IF_TRUE2
+push constant 16384
+push this 9
+push constant 8
+add
+push constant 32
+call Math.multiply 2
+add
+push this 0
+push constant 16
+call Math.divide 2
+add
+call Memory.peek 1
+push constant 0
+eq
+if-goto IF_TRUE3
+goto IF_FALSE3
+label IF_TRUE3
+push constant 0
+not
+return
+label IF_FALSE3
+label IF_FALSE2
+push constant 0
+return
+function StraightPiece.canMoveLeft 0
+push argument 0
+pop pointer 0
+push this 11
+push constant 0
+eq
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push constant 16384
+push this 1
+push constant 32
+call Math.multiply 2
+add
+push this 0
+push constant 2
+sub
+push constant 16
+call Math.divide 2
+add
+call Memory.peek 1
+push constant 0
+eq
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push constant 0
+not
+return
+label IF_FALSE1
+label IF_FALSE0
+push this 11
+push constant 1
+eq
+if-goto IF_TRUE2
+goto IF_FALSE2
+label IF_TRUE2
+push constant 16384
+push this 1
+push constant 32
+call Math.multiply 2
+add
+push this 0
+push constant 2
+sub
+push constant 16
+call Math.divide 2
+add
+call Memory.peek 1
+push constant 0
+eq
+push constant 16384
+push this 3
+push constant 32
+call Math.multiply 2
+add
+push this 0
+push constant 2
+sub
+push constant 16
+call Math.divide 2
+add
+call Memory.peek 1
+push constant 0
+eq
+and
+push constant 16384
+push this 5
+push constant 32
+call Math.multiply 2
+add
+push this 0
+push constant 2
+sub
+push constant 16
+call Math.divide 2
+add
+call Memory.peek 1
+push constant 0
+eq
+and
+push constant 16384
+push this 7
+push constant 32
+call Math.multiply 2
+add
+push this 0
+push constant 2
+sub
+push constant 16
+call Math.divide 2
+add
+call Memory.peek 1
+push constant 0
+eq
+and
+push constant 16384
+push this 9
+push constant 32
+call Math.multiply 2
+add
+push this 0
+push constant 2
+sub
+push constant 16
+call Math.divide 2
+add
+call Memory.peek 1
+push constant 0
+eq
+and
+if-goto IF_TRUE3
+goto IF_FALSE3
+label IF_TRUE3
+push constant 0
+not
+return
+label IF_FALSE3
+label IF_FALSE2
+push constant 0
+return
+function StraightPiece.canMoveRight 0
+push argument 0
+pop pointer 0
+push this 11
+push constant 0
+eq
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push constant 16384
+push this 1
+push constant 32
+call Math.multiply 2
+add
+push this 8
+push constant 8
+add
+push constant 16
+call Math.divide 2
+add
+call Memory.peek 1
+push constant 0
+eq
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push constant 0
+not
+return
+label IF_FALSE1
+label IF_FALSE0
+push this 11
+push constant 1
+eq
+if-goto IF_TRUE2
+goto IF_FALSE2
+label IF_TRUE2
+push constant 16384
+push this 1
+push constant 32
+call Math.multiply 2
+add
+push this 2
+push constant 2
+add
+push constant 16
+call Math.divide 2
+add
+call Memory.peek 1
+push constant 0
+eq
+push constant 16384
+push this 3
+push constant 32
+call Math.multiply 2
+add
+push this 2
+push constant 2
+add
+push constant 16
+call Math.divide 2
+add
+call Memory.peek 1
+push constant 0
+eq
+and
+push constant 16384
+push this 5
+push constant 32
+call Math.multiply 2
+add
+push this 2
+push constant 2
+add
+push constant 16
+call Math.divide 2
+add
+call Memory.peek 1
+push constant 0
+eq
+and
+push constant 16384
+push this 7
+push constant 32
+call Math.multiply 2
+add
+push this 2
+push constant 2
+add
+push constant 16
+call Math.divide 2
+add
+call Memory.peek 1
+push constant 0
+eq
+and
+push constant 16384
+push this 9
+push constant 32
+call Math.multiply 2
+add
+push this 2
+push constant 2
+add
+push constant 16
+call Math.divide 2
+add
+call Memory.peek 1
+push constant 0
+eq
+and
+if-goto IF_TRUE3
+goto IF_FALSE3
+label IF_TRUE3
+push constant 0
+not
+return
+label IF_FALSE3
+label IF_FALSE2
+push constant 0
+return
+function StraightPiece.changeOrientation 0
+push argument 0
+pop pointer 0
+push this 11
+push constant 0
+eq
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push constant 16384
+push this 9
+push constant 8
+add
+push constant 32
+call Math.multiply 2
+add
+push this 0
+push constant 16
+call Math.divide 2
+add
+call Memory.peek 1
+push constant 0
+eq
+push this 9
+push constant 8
+add
+and
+push constant 248
+lt
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push constant 1
+pop this 11
+label IF_FALSE1
+goto IF_END0
+label IF_FALSE0
+push constant 16384
+push this 1
+push constant 32
+call Math.multiply 2
+add
+push this 8
+push constant 8
+add
+push constant 16
+call Math.divide 2
+add
+call Memory.peek 1
+push constant 0
+eq
+push this 8
+push constant 8
+add
+and
+push constant 336
+lt
+if-goto IF_TRUE2
+goto IF_FALSE2
+label IF_TRUE2
+push constant 0
+pop this 11
+label IF_FALSE2
+label IF_END0
+push constant 150
+call Sys.wait 1
+pop temp 0
+push constant 0
+return

@@ -1,0 +1,78 @@
+class Shape{
+	field int type;
+	field int x1;
+	field int y1;
+	field int size;
+
+	constructor Shape new(int Ax, int Ay, int Asize){
+	let x1 = Ax;
+	let y1 = Ay;
+	let size = Asize;
+	return this;
+	}
+	
+	method void drawSquarePiece(){
+	do Screen.drawRectangle(x1, y1, x1+size, y1+size); //upper left quadrant
+	do Screen.drawRectangle(x1+size+2, y1, x1+size+size+2, y1+size); //upper right quadrant
+	do Screen.drawRectangle(x1, y1+size+2, x1+size, y1+size+size+2); //lower left quadrant
+	do Screen.drawRectangle(x1+size+2, y1+size+2, x1+size+size+2, y1+size+size+2); //lower right quadrant
+	return;
+	}
+	
+	method void drawThreePiece(){
+	   do Screen.drawRectangle(x1, y1, x1+size, y1+size); //topmost piece
+	   do Screen.drawRectangle(x1, y1+size+2, x1+size, y1+size+size+2); //bottom piece
+	   do Screen.drawRectangle(x1+size+2, y1+size+2, x1+size+size+2, y1+size+size+2); //to right of bottom
+	   do Screen.drawRectangle(x1-size-2, y1+size+2, x1-2, y1+size+size+2); //to left of bottom  
+	return;
+	}
+	
+	method void drawStraightPiece(){
+	   do Screen.drawRectangle(x1, y1, x1+size, y1+size); //leftmost piece
+	   do Screen.drawRectangle(x1+size+2, y1, x1+size+size+2, y1+size); //2nd from left
+	   do Screen.drawRectangle(x1+size+size+4, y1, x1+size+size+size+4, y1+size); //2nd from right
+	   do Screen.drawRectangle(x1+size+size+size+6, y1, x1+size+size+size+size+6, y1+size); //2nd from right
+	   return;
+	}
+	
+	method void drawLPiece(){
+	   do Screen.drawRectangle(x1, y1, x1+size, y1+size); //topmost piece
+	   do Screen.drawRectangle(x1, y1+size+2, x1+size, y1+size+size+2); //bottom piece
+	   do Screen.drawRectangle(x1+size+2, y1+size+2, x1+size+size+2, y1+size+size+2); //to right of bottom
+	   do Screen.drawRectangle(x1+size+size+4, y1+size+2, x1+size+size+size+4, y1+size+size+2);
+	   return;
+	}
+	
+	method void drawZPiece(){
+	return;
+	}
+	
+	
+	method void drawPiece(int Atype){
+	do Screen.setColor(1);
+	if (Atype = 1){do drawSquarePiece();}
+	if (Atype = 2){do drawStraightPiece();}
+	if (Atype = 3){do drawThreePiece();}
+	if (Atype = 4){do drawLPiece();}
+	if (Atype = 5){do drawZPiece();}
+	return;
+	}
+
+	method void erasePiece(int Atype){
+	do Screen.setColor(0);
+	if (Atype = 1){do drawSquarePiece();}
+	if (Atype = 2){do drawStraightPiece();}
+	if (Atype = 3){do drawThreePiece();}
+	if (Atype = 4){do drawLPiece();}
+	if (Atype = 5){do drawZPiece();}
+	return;
+	}
+
+	method void dispose(){
+	do Memory.deAlloc(this);
+	return;
+	}
+
+}	
+
+

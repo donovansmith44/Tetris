@@ -1,0 +1,316 @@
+class TetrisGame{
+	field SquarePiece square;
+	field StraightPiece straight;
+	field LPiece l;
+	field ZPiece z;
+	field ThreePiece three;
+	field int x, y, size;
+	field TetrisGame game;
+
+	constructor TetrisGame new(){
+	let x = 240;
+	let y = 9;
+	let size = 14;
+	let square = SquarePiece.new(x, y, size);
+	let straight = StraightPiece.new(x, y, size);
+	let l = LPiece.new(x, y, size);
+	let z = ZPiece.new(x, y, size);
+	let three = ThreePiece.new(x, y, size);
+	return this;
+	}
+
+	method void drawGameBoard(){
+	do Screen.drawLine(174,8,336,8); //top
+	do Screen.drawLine(174,8,174,248); //lside
+	do Screen.drawLine(336,8,336,248); //rside
+	do Screen.drawLine(174,248,336,248); //bot
+	return;
+	}
+	
+	//**DROP SQUARE//
+	method void dropSquare(){
+	var char kbdInput;
+	var int time;
+	//DROP SHAPE
+	while(square.canMoveDown()) 
+	{
+	let kbdInput = Keyboard.keyPressed();
+	if(kbdInput = 81){
+	return;
+	}
+	if(square.canMoveRight()){
+	if (kbdInput = 132){do square.moveRight();}
+	}
+	if(square.canMoveLeft()){
+	if (kbdInput = 130){do square.moveLeft();}
+	}
+	do square.drawSquarePiece();
+	if(kbdInput = 133){
+	do Sys.wait(5);
+	}
+	else{
+	do Sys.wait(15);
+	}
+	do square.eraseSquarePiece();
+	do square.incy();
+	}
+
+	//GIVE TIME FOR DROPPED SHAPE TO BE MOVED
+	while(time < 60){
+	let kbdInput = Keyboard.keyPressed();
+	if(kbdInput = 81){
+	return;
+	}
+	if(square.canMoveRight()){
+	   if (kbdInput = 132){
+	   do square.moveRight();
+	   }
+	}
+	if(square.canMoveLeft()){
+	if (kbdInput = 130){do square.moveLeft();}
+	}
+	do square.drawSquarePiece();
+	do Sys.wait(15);
+	do square.eraseSquarePiece();
+	let time = time + 1;
+	}
+
+	do square.drawSquarePiece();
+	
+	let square = SquarePiece.new(240, 9, 14);
+	return;
+	}
+
+	//**DROP STRAIGHTPIECE//
+	method void dropStraightPiece(){
+	var char kbdInput;
+	var int time;
+	//DROP SHAPE
+	while(straight.canMoveDown()) 
+	{
+	let kbdInput = Keyboard.keyPressed();
+	if(kbdInput = 81){
+	return;
+	}
+	if(kbdInput = 131){
+	do straight.changeOrientation();
+	}
+	if(straight.canMoveRight()){
+	if (kbdInput = 132){do straight.moveRight();}
+	}
+	if(straight.canMoveLeft()){
+	if (kbdInput = 130){do straight.moveLeft();}
+	}
+	do straight.drawStraightPiece();
+	if(kbdInput = 133){
+	do Sys.wait(5);
+	}
+	else{
+	do Sys.wait(15);
+	}
+	do straight.eraseStraightPiece();
+	do straight.incy();
+	}
+
+	//GIVE TIME FOR DROPPED SHAPE TO BE MOVED
+	while(time < 60){
+	let kbdInput = Keyboard.keyPressed();
+	if(kbdInput = 81){
+	return;
+	}
+	if(kbdInput = 131){
+	do straight.changeOrientation();
+	}
+	if(straight.canMoveRight()){
+	   if (kbdInput = 132){do straight.moveRight();}
+	}
+	if(straight.canMoveLeft()){
+	if (kbdInput = 130){do straight.moveLeft();}
+	}
+	do straight.drawStraightPiece();
+	do Sys.wait(15);
+	do straight.eraseStraightPiece();
+	let time = time + 1;
+	}
+
+	do straight.drawStraightPiece();
+	
+	let straight = StraightPiece.new(240, 9, 14);
+	return;
+	}
+
+	//**DROP THREEPIECE//
+	method void dropThreePiece(){
+	var char kbdInput;
+	var int time;
+	//DROP SHAPE
+	while(three.canMoveDown()) 
+	{
+	let kbdInput = Keyboard.keyPressed();
+	if(kbdInput = 81){
+	return;
+	}
+	if(kbdInput = 131){
+	do three.changeOrientation();
+	}
+	if(three.canMoveRight()){
+	if (kbdInput = 132){do three.moveRight();}
+	}
+	if(three.canMoveLeft()){
+	if (kbdInput = 130){do three.moveLeft();}
+	}
+	do three.drawThreePiece();
+	if(kbdInput = 133){
+	do Sys.wait(5);
+	}
+	else{
+	do Sys.wait(15);
+	}
+	do three.eraseThreePiece();
+	do three.incy();
+	}
+
+	//GIVE TIME FOR DROPPED SHAPE TO BE MOVED
+	while(time < 60){
+	let kbdInput = Keyboard.keyPressed();
+	if(kbdInput = 81){
+	return;
+	}
+	if(kbdInput = 131){
+	do three.changeOrientation();
+	}
+	if(three.canMoveRight()){
+	   if (kbdInput = 132){do three.moveRight();}
+	}
+	if(three.canMoveLeft()){
+	if (kbdInput = 130){do three.moveLeft();}
+	}
+	do three.drawThreePiece();
+	do Sys.wait(15);
+	do three.eraseThreePiece();
+	let time = time + 1;
+	}
+
+	do three.drawThreePiece();
+	
+	let three = ThreePiece.new(240, 9, 14);
+	return;
+ 	}
+
+	//**DROP ZPIECE//
+	method void dropZPiece(){
+	var char kbdInput;
+	var int time;
+	//DROP SHAPE
+	while(z.canMoveDown()) 
+	{
+	let kbdInput = Keyboard.keyPressed();
+	if(kbdInput = 81){
+	return;
+	}
+	if(kbdInput = 131){
+	do z.changeOrientation();
+	}
+	if(z.canMoveRight()){
+	if (kbdInput = 132){do z.moveRight();}
+	}
+	if(z.canMoveLeft()){
+	if (kbdInput = 130){do z.moveLeft();}
+	}
+	do z.draw();
+	if(kbdInput = 133){
+	do Sys.wait(5);
+	}
+	else{
+	do Sys.wait(15);
+	}
+	do z.erase();
+	do z.incy();
+	}
+
+	//GIVE TIME FOR DROPPED SHAPE TO BE MOVED
+	while(time < 60){
+	let kbdInput = Keyboard.keyPressed();
+	if(kbdInput = 81){
+	return;
+	}
+	if(kbdInput = 131){
+	do z.changeOrientation();
+	}
+	if(z.canMoveRight()){
+	   if (kbdInput = 132){do z.moveRight();}
+	}
+	if(z.canMoveLeft()){
+	if (kbdInput = 130){do z.moveLeft();}
+	}
+	do z.draw();
+	do Sys.wait(15);
+	do z.erase();
+	let time = time + 1;
+	}
+
+	do z.draw();
+	
+	let z = ZPiece.new(240, 9, 14);
+
+	return;
+	}
+
+	//**DROP LPIECE//
+	method void dropLPiece(){
+	var char kbdInput;
+	var int time;
+	//DROP SHAPE
+	while(l.canMoveDown()) 
+	{
+	let kbdInput = Keyboard.keyPressed();
+	if(kbdInput = 81){
+	return;
+	}
+	if(kbdInput = 131){
+	do l.changeOrientation();
+	}
+	if(l.canMoveRight()){
+	if (kbdInput = 132){do l.moveRight();}
+	}
+	if(l.canMoveLeft()){
+	if (kbdInput = 130){do l.moveLeft();}
+	}
+	do l.draw();
+	if(kbdInput = 133){
+	do Sys.wait(5);
+	}
+	else{
+	do Sys.wait(15);
+	}
+	do l.erase();
+	do l.incy();
+	}
+
+	//GIVE TIME FOR DROPPED SHAPE TO BE MOVED
+	while(time < 60){
+	let kbdInput = Keyboard.keyPressed();
+	if(kbdInput = 81){
+	return;
+	}
+	if(kbdInput = 131){
+	do l.changeOrientation();
+	}
+	if(l.canMoveRight()){
+	   if (kbdInput = 132){do l.moveRight();}
+	}
+	if(l.canMoveLeft()){
+	if (kbdInput = 130){do l.moveLeft();}
+	}
+	do l.draw();
+	do Sys.wait(15);
+	do l.erase();
+	let time = time + 1;
+	}
+
+	do l.draw();
+	
+	let l = LPiece.new(240, 9, 14);
+	return;
+	}
+}

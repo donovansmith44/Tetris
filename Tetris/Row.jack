@@ -1,0 +1,86 @@
+class Row{
+	field int numFullRows;
+	field Row Rows;
+	field Array fullRows;
+
+	constructor Row new(){
+	let fullRows = Array.new(15);
+	return this;
+	}
+	
+	method bool Full(int Ax, int Ay){
+		
+		while(~(Memory.peek(16384+Math.multiply(32,Ay)+Math.divide(Ax,16)) = 0)){
+		let Ax = Ax+16;
+		}
+		
+		if(Ax = 352){
+		return true;
+	 	}
+		else{
+		return false;
+		}
+	}
+
+	method int getNumFull(){
+		var int x, y, rowNumber;
+		let numFullRows = 0;
+		let x = 176;
+		let y = 246;
+
+	while(rowNumber < 15){
+
+		if(Rows.Full(x,y)){ //if the row is full, store 'true' as an element in a space corresponding to it in the fullRows array
+		let numFullRows = numFullRows + 1;
+		let fullRows[rowNumber] = true;
+		}
+		else{
+		let fullRows[rowNumber] = false;
+		}
+
+	   	let x = 176;
+	   	let y = y - 16;
+	   	let rowNumber = rowNumber + 1;
+	   }
+		return numFullRows;
+	}
+	
+	method void shiftDown(int rowNum){
+	var int x, y;
+
+	let y = 246 - Math.multiply(16,rowNum);
+
+	while(y>24){
+		let x = 176;
+		while(x < 352){
+		do Memory.poke(16384+Math.multiply(y,32)+Math.divide(x,16),Memory.peek(16384+Math.multiply(y-16,32)+Math.divide(x,16)));
+		let x = x+1;
+		}
+	let y = y-1;
+	}
+	return;
+	}
+
+	method void clear(){
+	var int i, j;
+
+	while(i<15){
+		if(fullRows[i]){ //if row i is full
+
+		do Rows.shiftDown(i); //shift row i down
+    		   let j = i;
+
+		while(j<15){
+		   let fullRows[j]=fullRows[j+1];
+		   let j = j+1;
+		}
+		   let fullRows[14]=false;
+		}
+
+		else{
+		let i = i + 1;
+		}
+	}
+	   return;
+	}
+}

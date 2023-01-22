@@ -1,0 +1,901 @@
+function TetrisGame.new 0
+push constant 9
+call Memory.alloc 1
+pop pointer 0
+push constant 240
+pop this 5
+push constant 9
+pop this 6
+push constant 14
+pop this 7
+push this 5
+push this 6
+push this 7
+call SquarePiece.new 3
+pop this 0
+push this 5
+push this 6
+push this 7
+call StraightPiece.new 3
+pop this 1
+push this 5
+push this 6
+push this 7
+call LPiece.new 3
+pop this 2
+push this 5
+push this 6
+push this 7
+call ZPiece.new 3
+pop this 3
+push this 5
+push this 6
+push this 7
+call ThreePiece.new 3
+pop this 4
+push pointer 0
+return
+function TetrisGame.drawGameBoard 0
+push argument 0
+pop pointer 0
+push constant 174
+push constant 8
+push constant 336
+push constant 8
+call Screen.drawLine 4
+pop temp 0
+push constant 174
+push constant 8
+push constant 174
+push constant 248
+call Screen.drawLine 4
+pop temp 0
+push constant 336
+push constant 8
+push constant 336
+push constant 248
+call Screen.drawLine 4
+pop temp 0
+push constant 174
+push constant 248
+push constant 336
+push constant 248
+call Screen.drawLine 4
+pop temp 0
+push constant 0
+return
+function TetrisGame.dropSquare 2
+push argument 0
+pop pointer 0
+label WHILE_EXP0
+push this 0
+call SquarePiece.canMoveDown 1
+not
+if-goto WHILE_END0
+call Keyboard.keyPressed 0
+pop local 0
+push local 0
+push constant 81
+eq
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push constant 0
+return
+label IF_FALSE0
+push this 0
+call SquarePiece.canMoveRight 1
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push local 0
+push constant 132
+eq
+if-goto IF_TRUE2
+goto IF_FALSE2
+label IF_TRUE2
+push this 0
+call SquarePiece.moveRight 1
+pop temp 0
+label IF_FALSE2
+label IF_FALSE1
+push this 0
+call SquarePiece.canMoveLeft 1
+if-goto IF_TRUE3
+goto IF_FALSE3
+label IF_TRUE3
+push local 0
+push constant 130
+eq
+if-goto IF_TRUE4
+goto IF_FALSE4
+label IF_TRUE4
+push this 0
+call SquarePiece.moveLeft 1
+pop temp 0
+label IF_FALSE4
+label IF_FALSE3
+push this 0
+call SquarePiece.drawSquarePiece 1
+pop temp 0
+push local 0
+push constant 133
+eq
+if-goto IF_TRUE5
+goto IF_FALSE5
+label IF_TRUE5
+push constant 5
+call Sys.wait 1
+pop temp 0
+goto IF_END5
+label IF_FALSE5
+push constant 15
+call Sys.wait 1
+pop temp 0
+label IF_END5
+push this 0
+call SquarePiece.eraseSquarePiece 1
+pop temp 0
+push this 0
+call SquarePiece.incy 1
+pop temp 0
+goto WHILE_EXP0
+label WHILE_END0
+label WHILE_EXP1
+push local 1
+push constant 60
+lt
+not
+if-goto WHILE_END1
+call Keyboard.keyPressed 0
+pop local 0
+push local 0
+push constant 81
+eq
+if-goto IF_TRUE6
+goto IF_FALSE6
+label IF_TRUE6
+push constant 0
+return
+label IF_FALSE6
+push this 0
+call SquarePiece.canMoveRight 1
+if-goto IF_TRUE7
+goto IF_FALSE7
+label IF_TRUE7
+push local 0
+push constant 132
+eq
+if-goto IF_TRUE8
+goto IF_FALSE8
+label IF_TRUE8
+push this 0
+call SquarePiece.moveRight 1
+pop temp 0
+label IF_FALSE8
+label IF_FALSE7
+push this 0
+call SquarePiece.canMoveLeft 1
+if-goto IF_TRUE9
+goto IF_FALSE9
+label IF_TRUE9
+push local 0
+push constant 130
+eq
+if-goto IF_TRUE10
+goto IF_FALSE10
+label IF_TRUE10
+push this 0
+call SquarePiece.moveLeft 1
+pop temp 0
+label IF_FALSE10
+label IF_FALSE9
+push this 0
+call SquarePiece.drawSquarePiece 1
+pop temp 0
+push constant 15
+call Sys.wait 1
+pop temp 0
+push this 0
+call SquarePiece.eraseSquarePiece 1
+pop temp 0
+push local 1
+push constant 1
+add
+pop local 1
+goto WHILE_EXP1
+label WHILE_END1
+push this 0
+call SquarePiece.drawSquarePiece 1
+pop temp 0
+push constant 240
+push constant 9
+push constant 14
+call SquarePiece.new 3
+pop this 0
+push constant 0
+return
+function TetrisGame.dropStraightPiece 2
+push argument 0
+pop pointer 0
+label WHILE_EXP0
+push this 1
+call StraightPiece.canMoveDown 1
+not
+if-goto WHILE_END0
+call Keyboard.keyPressed 0
+pop local 0
+push local 0
+push constant 81
+eq
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push constant 0
+return
+label IF_FALSE0
+push local 0
+push constant 131
+eq
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push this 1
+call StraightPiece.changeOrientation 1
+pop temp 0
+label IF_FALSE1
+push this 1
+call StraightPiece.canMoveRight 1
+if-goto IF_TRUE2
+goto IF_FALSE2
+label IF_TRUE2
+push local 0
+push constant 132
+eq
+if-goto IF_TRUE3
+goto IF_FALSE3
+label IF_TRUE3
+push this 1
+call StraightPiece.moveRight 1
+pop temp 0
+label IF_FALSE3
+label IF_FALSE2
+push this 1
+call StraightPiece.canMoveLeft 1
+if-goto IF_TRUE4
+goto IF_FALSE4
+label IF_TRUE4
+push local 0
+push constant 130
+eq
+if-goto IF_TRUE5
+goto IF_FALSE5
+label IF_TRUE5
+push this 1
+call StraightPiece.moveLeft 1
+pop temp 0
+label IF_FALSE5
+label IF_FALSE4
+push this 1
+call StraightPiece.drawStraightPiece 1
+pop temp 0
+push local 0
+push constant 133
+eq
+if-goto IF_TRUE6
+goto IF_FALSE6
+label IF_TRUE6
+push constant 5
+call Sys.wait 1
+pop temp 0
+goto IF_END6
+label IF_FALSE6
+push constant 15
+call Sys.wait 1
+pop temp 0
+label IF_END6
+push this 1
+call StraightPiece.eraseStraightPiece 1
+pop temp 0
+push this 1
+call StraightPiece.incy 1
+pop temp 0
+goto WHILE_EXP0
+label WHILE_END0
+label WHILE_EXP1
+push local 1
+push constant 60
+lt
+not
+if-goto WHILE_END1
+call Keyboard.keyPressed 0
+pop local 0
+push local 0
+push constant 81
+eq
+if-goto IF_TRUE7
+goto IF_FALSE7
+label IF_TRUE7
+push constant 0
+return
+label IF_FALSE7
+push local 0
+push constant 131
+eq
+if-goto IF_TRUE8
+goto IF_FALSE8
+label IF_TRUE8
+push this 1
+call StraightPiece.changeOrientation 1
+pop temp 0
+label IF_FALSE8
+push this 1
+call StraightPiece.canMoveRight 1
+if-goto IF_TRUE9
+goto IF_FALSE9
+label IF_TRUE9
+push local 0
+push constant 132
+eq
+if-goto IF_TRUE10
+goto IF_FALSE10
+label IF_TRUE10
+push this 1
+call StraightPiece.moveRight 1
+pop temp 0
+label IF_FALSE10
+label IF_FALSE9
+push this 1
+call StraightPiece.canMoveLeft 1
+if-goto IF_TRUE11
+goto IF_FALSE11
+label IF_TRUE11
+push local 0
+push constant 130
+eq
+if-goto IF_TRUE12
+goto IF_FALSE12
+label IF_TRUE12
+push this 1
+call StraightPiece.moveLeft 1
+pop temp 0
+label IF_FALSE12
+label IF_FALSE11
+push this 1
+call StraightPiece.drawStraightPiece 1
+pop temp 0
+push constant 15
+call Sys.wait 1
+pop temp 0
+push this 1
+call StraightPiece.eraseStraightPiece 1
+pop temp 0
+push local 1
+push constant 1
+add
+pop local 1
+goto WHILE_EXP1
+label WHILE_END1
+push this 1
+call StraightPiece.drawStraightPiece 1
+pop temp 0
+push constant 240
+push constant 9
+push constant 14
+call StraightPiece.new 3
+pop this 1
+push constant 0
+return
+function TetrisGame.dropThreePiece 2
+push argument 0
+pop pointer 0
+label WHILE_EXP0
+push this 4
+call ThreePiece.canMoveDown 1
+not
+if-goto WHILE_END0
+call Keyboard.keyPressed 0
+pop local 0
+push local 0
+push constant 81
+eq
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push constant 0
+return
+label IF_FALSE0
+push local 0
+push constant 131
+eq
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push this 4
+call ThreePiece.changeOrientation 1
+pop temp 0
+label IF_FALSE1
+push this 4
+call ThreePiece.canMoveRight 1
+if-goto IF_TRUE2
+goto IF_FALSE2
+label IF_TRUE2
+push local 0
+push constant 132
+eq
+if-goto IF_TRUE3
+goto IF_FALSE3
+label IF_TRUE3
+push this 4
+call ThreePiece.moveRight 1
+pop temp 0
+label IF_FALSE3
+label IF_FALSE2
+push this 4
+call ThreePiece.canMoveLeft 1
+if-goto IF_TRUE4
+goto IF_FALSE4
+label IF_TRUE4
+push local 0
+push constant 130
+eq
+if-goto IF_TRUE5
+goto IF_FALSE5
+label IF_TRUE5
+push this 4
+call ThreePiece.moveLeft 1
+pop temp 0
+label IF_FALSE5
+label IF_FALSE4
+push this 4
+call ThreePiece.drawThreePiece 1
+pop temp 0
+push local 0
+push constant 133
+eq
+if-goto IF_TRUE6
+goto IF_FALSE6
+label IF_TRUE6
+push constant 5
+call Sys.wait 1
+pop temp 0
+goto IF_END6
+label IF_FALSE6
+push constant 15
+call Sys.wait 1
+pop temp 0
+label IF_END6
+push this 4
+call ThreePiece.eraseThreePiece 1
+pop temp 0
+push this 4
+call ThreePiece.incy 1
+pop temp 0
+goto WHILE_EXP0
+label WHILE_END0
+label WHILE_EXP1
+push local 1
+push constant 60
+lt
+not
+if-goto WHILE_END1
+call Keyboard.keyPressed 0
+pop local 0
+push local 0
+push constant 81
+eq
+if-goto IF_TRUE7
+goto IF_FALSE7
+label IF_TRUE7
+push constant 0
+return
+label IF_FALSE7
+push local 0
+push constant 131
+eq
+if-goto IF_TRUE8
+goto IF_FALSE8
+label IF_TRUE8
+push this 4
+call ThreePiece.changeOrientation 1
+pop temp 0
+label IF_FALSE8
+push this 4
+call ThreePiece.canMoveRight 1
+if-goto IF_TRUE9
+goto IF_FALSE9
+label IF_TRUE9
+push local 0
+push constant 132
+eq
+if-goto IF_TRUE10
+goto IF_FALSE10
+label IF_TRUE10
+push this 4
+call ThreePiece.moveRight 1
+pop temp 0
+label IF_FALSE10
+label IF_FALSE9
+push this 4
+call ThreePiece.canMoveLeft 1
+if-goto IF_TRUE11
+goto IF_FALSE11
+label IF_TRUE11
+push local 0
+push constant 130
+eq
+if-goto IF_TRUE12
+goto IF_FALSE12
+label IF_TRUE12
+push this 4
+call ThreePiece.moveLeft 1
+pop temp 0
+label IF_FALSE12
+label IF_FALSE11
+push this 4
+call ThreePiece.drawThreePiece 1
+pop temp 0
+push constant 15
+call Sys.wait 1
+pop temp 0
+push this 4
+call ThreePiece.eraseThreePiece 1
+pop temp 0
+push local 1
+push constant 1
+add
+pop local 1
+goto WHILE_EXP1
+label WHILE_END1
+push this 4
+call ThreePiece.drawThreePiece 1
+pop temp 0
+push constant 240
+push constant 9
+push constant 14
+call ThreePiece.new 3
+pop this 4
+push constant 0
+return
+function TetrisGame.dropZPiece 2
+push argument 0
+pop pointer 0
+label WHILE_EXP0
+push this 3
+call ZPiece.canMoveDown 1
+not
+if-goto WHILE_END0
+call Keyboard.keyPressed 0
+pop local 0
+push local 0
+push constant 81
+eq
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push constant 0
+return
+label IF_FALSE0
+push local 0
+push constant 131
+eq
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push this 3
+call ZPiece.changeOrientation 1
+pop temp 0
+label IF_FALSE1
+push this 3
+call ZPiece.canMoveRight 1
+if-goto IF_TRUE2
+goto IF_FALSE2
+label IF_TRUE2
+push local 0
+push constant 132
+eq
+if-goto IF_TRUE3
+goto IF_FALSE3
+label IF_TRUE3
+push this 3
+call ZPiece.moveRight 1
+pop temp 0
+label IF_FALSE3
+label IF_FALSE2
+push this 3
+call ZPiece.canMoveLeft 1
+if-goto IF_TRUE4
+goto IF_FALSE4
+label IF_TRUE4
+push local 0
+push constant 130
+eq
+if-goto IF_TRUE5
+goto IF_FALSE5
+label IF_TRUE5
+push this 3
+call ZPiece.moveLeft 1
+pop temp 0
+label IF_FALSE5
+label IF_FALSE4
+push this 3
+call ZPiece.draw 1
+pop temp 0
+push local 0
+push constant 133
+eq
+if-goto IF_TRUE6
+goto IF_FALSE6
+label IF_TRUE6
+push constant 5
+call Sys.wait 1
+pop temp 0
+goto IF_END6
+label IF_FALSE6
+push constant 15
+call Sys.wait 1
+pop temp 0
+label IF_END6
+push this 3
+call ZPiece.erase 1
+pop temp 0
+push this 3
+call ZPiece.incy 1
+pop temp 0
+goto WHILE_EXP0
+label WHILE_END0
+label WHILE_EXP1
+push local 1
+push constant 60
+lt
+not
+if-goto WHILE_END1
+call Keyboard.keyPressed 0
+pop local 0
+push local 0
+push constant 81
+eq
+if-goto IF_TRUE7
+goto IF_FALSE7
+label IF_TRUE7
+push constant 0
+return
+label IF_FALSE7
+push local 0
+push constant 131
+eq
+if-goto IF_TRUE8
+goto IF_FALSE8
+label IF_TRUE8
+push this 3
+call ZPiece.changeOrientation 1
+pop temp 0
+label IF_FALSE8
+push this 3
+call ZPiece.canMoveRight 1
+if-goto IF_TRUE9
+goto IF_FALSE9
+label IF_TRUE9
+push local 0
+push constant 132
+eq
+if-goto IF_TRUE10
+goto IF_FALSE10
+label IF_TRUE10
+push this 3
+call ZPiece.moveRight 1
+pop temp 0
+label IF_FALSE10
+label IF_FALSE9
+push this 3
+call ZPiece.canMoveLeft 1
+if-goto IF_TRUE11
+goto IF_FALSE11
+label IF_TRUE11
+push local 0
+push constant 130
+eq
+if-goto IF_TRUE12
+goto IF_FALSE12
+label IF_TRUE12
+push this 3
+call ZPiece.moveLeft 1
+pop temp 0
+label IF_FALSE12
+label IF_FALSE11
+push this 3
+call ZPiece.draw 1
+pop temp 0
+push constant 15
+call Sys.wait 1
+pop temp 0
+push this 3
+call ZPiece.erase 1
+pop temp 0
+push local 1
+push constant 1
+add
+pop local 1
+goto WHILE_EXP1
+label WHILE_END1
+push this 3
+call ZPiece.draw 1
+pop temp 0
+push constant 240
+push constant 9
+push constant 14
+call ZPiece.new 3
+pop this 3
+push constant 0
+return
+function TetrisGame.dropLPiece 2
+push argument 0
+pop pointer 0
+label WHILE_EXP0
+push this 2
+call LPiece.canMoveDown 1
+not
+if-goto WHILE_END0
+call Keyboard.keyPressed 0
+pop local 0
+push local 0
+push constant 81
+eq
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push constant 0
+return
+label IF_FALSE0
+push local 0
+push constant 131
+eq
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push this 2
+call LPiece.changeOrientation 1
+pop temp 0
+label IF_FALSE1
+push this 2
+call LPiece.canMoveRight 1
+if-goto IF_TRUE2
+goto IF_FALSE2
+label IF_TRUE2
+push local 0
+push constant 132
+eq
+if-goto IF_TRUE3
+goto IF_FALSE3
+label IF_TRUE3
+push this 2
+call LPiece.moveRight 1
+pop temp 0
+label IF_FALSE3
+label IF_FALSE2
+push this 2
+call LPiece.canMoveLeft 1
+if-goto IF_TRUE4
+goto IF_FALSE4
+label IF_TRUE4
+push local 0
+push constant 130
+eq
+if-goto IF_TRUE5
+goto IF_FALSE5
+label IF_TRUE5
+push this 2
+call LPiece.moveLeft 1
+pop temp 0
+label IF_FALSE5
+label IF_FALSE4
+push this 2
+call LPiece.draw 1
+pop temp 0
+push local 0
+push constant 133
+eq
+if-goto IF_TRUE6
+goto IF_FALSE6
+label IF_TRUE6
+push constant 5
+call Sys.wait 1
+pop temp 0
+goto IF_END6
+label IF_FALSE6
+push constant 15
+call Sys.wait 1
+pop temp 0
+label IF_END6
+push this 2
+call LPiece.erase 1
+pop temp 0
+push this 2
+call LPiece.incy 1
+pop temp 0
+goto WHILE_EXP0
+label WHILE_END0
+label WHILE_EXP1
+push local 1
+push constant 60
+lt
+not
+if-goto WHILE_END1
+call Keyboard.keyPressed 0
+pop local 0
+push local 0
+push constant 81
+eq
+if-goto IF_TRUE7
+goto IF_FALSE7
+label IF_TRUE7
+push constant 0
+return
+label IF_FALSE7
+push local 0
+push constant 131
+eq
+if-goto IF_TRUE8
+goto IF_FALSE8
+label IF_TRUE8
+push this 2
+call LPiece.changeOrientation 1
+pop temp 0
+label IF_FALSE8
+push this 2
+call LPiece.canMoveRight 1
+if-goto IF_TRUE9
+goto IF_FALSE9
+label IF_TRUE9
+push local 0
+push constant 132
+eq
+if-goto IF_TRUE10
+goto IF_FALSE10
+label IF_TRUE10
+push this 2
+call LPiece.moveRight 1
+pop temp 0
+label IF_FALSE10
+label IF_FALSE9
+push this 2
+call LPiece.canMoveLeft 1
+if-goto IF_TRUE11
+goto IF_FALSE11
+label IF_TRUE11
+push local 0
+push constant 130
+eq
+if-goto IF_TRUE12
+goto IF_FALSE12
+label IF_TRUE12
+push this 2
+call LPiece.moveLeft 1
+pop temp 0
+label IF_FALSE12
+label IF_FALSE11
+push this 2
+call LPiece.draw 1
+pop temp 0
+push constant 15
+call Sys.wait 1
+pop temp 0
+push this 2
+call LPiece.erase 1
+pop temp 0
+push local 1
+push constant 1
+add
+pop local 1
+goto WHILE_EXP1
+label WHILE_END1
+push this 2
+call LPiece.draw 1
+pop temp 0
+push constant 240
+push constant 9
+push constant 14
+call LPiece.new 3
+pop this 2
+push constant 0
+return
